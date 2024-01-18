@@ -1,8 +1,8 @@
 # CS 412 CONGABONGAZONGA BROJECT
 
 ## Table Of Contents
-+ [1. Overall Structure](#overall)
-+ [2. Main Contributions to the Project](#maincon)
++ #### [1. Overall Structure](#overall)
++ ###[2. Main Contributions to the Project](#maincon)
 - [2.1 Clustering for Prompt Matching](#clustering1)
 - [2.2 Preprocessing](#preprocessing1)
 - [2.3 Keyword Lists](#keyword)
