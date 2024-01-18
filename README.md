@@ -58,8 +58,21 @@ Clustering played a pivotal role in our approach. We experimented with various c
 We introduced sentiment scores as additional features to gauge user satisfaction with responses. For this, we experimented with two predefined Sentiment Analysis models, Bert and TextBlob. After the experimentation, we observed that we were more satisfied with the TextBlob. Bert's sentiment scores came out to be around -0.7 for almost every sample. Still, we also included Bert's scores while performing the feature selection.
 In addition, we also calculated the readability scores of the prompts. To achieve this, we utilized the textstat library. Specifically, we used **flesch_reading_ease,	flesch_kincaid_grade, gunning_fog,	smog_index,	automated_readability_index,	coleman_liau_index,	linsear_write_formula,	dale_chall_readability_score**.
 Furthermore, the application of whitelist and blacklist words during feature engineering provided finer control over the model's understanding of relevant terms. We decided to drop the keywords features to only 2, Blacklist and Whitelist, because we believe that checking every single word's frequency separately increases the dimensionality. Instead, we thought that keeping the words that have negative meanings on the prompt in the Blacklist and keeping the words that have positive meanings on the prompt in the Whitelist is better. 
-In order to calculate Whitelist and Blacklist scores, we used a different approach. Rather than calculating 
+In order to calculate Whitelist and Blacklist scores, we used a different approach. Rather than calculating the frequency of whitelist words and basically taking the average (or equivalently checking the frequency of them over the entire conversation), we profit from the advantage of having split the prompts into corresponding questions. We think that splitting the prompts enables us to detect the difference between an unpleasant prompt in a question with higher grade, by just giving weights to the prompts proportional to their question's grade. For example, two different users u1 and u2 may have equal blacklist word frequencies for question 2 and question 5 respectively. u1's blacklist word frequency may mean a loss of points out of 5 since q2 is 5 points, but u2's blacklist word frequency should mean a higher loss since question 5 is 20 points. In order to achieve the interpretation of this difference, we calculate the weighted mean of whitelist and blacklist words as follows:
+                whitelist_score = (q1_whitelist_freq * q1_grade + q2_whitelist_freq * q2_grade + ...) / total_grade
+We calculate each qi_whitelist_freq by taking the average of the whitelist frequencies of each prompt which correspond to question i. This way, a question with higher grade will have more weight and more importance on the value of whitelist_score feature. We apply the same manner to calculate the blacklist_score.
 
 ## 8. Feature Selection
 
-## 9. Model Evaluation
+We used various different approaches to select features from our dataset. At the beginning, we have 15 features: number of prompts, average words per prompt, average words per response, whitelist score, blacklist score, TextBlob sentiment score, Bert sentiment score, and 8 different readability scores.
+First, we plotted the correlation matrix to see the correlation between the features themselves and the target distributions. We tried selecting features with higher correlations with target & lower correlations between themselves, since we think that higher correlation with target means more relevant information, and lower correlation between each other means not carrying similar information.
+Only this was not enough to come up with the most useful subset. We also tried forward and backward selection and detected the features that provide highest performance in a specific model (e.g Random Forest).
+
+## 9. Model Fitting & Evaluation
+
+We searched through different regression models (from Random Forest to Bayesian Lasso) and evaluated their performance to find which algorithm can model our dataset the best. We also tuned their hyperparameters using both manual methods and automated tuning algorithms like GridSearch.
+
+## 10. Results & Analysis
+
+
+Although we decreased both the train and test error compared to the baseline model, we are not satisfied with the MSE that we received. 
