@@ -27,7 +27,7 @@
 
 The project's architecture is illustrated in the following schema:
 
-![Schema](diagram.drawio.png)
+![Schema](diagram.drawio.svg)
 
 This diagram demonstrates the different steps of the project we followed in order to come up with this system. 
 
