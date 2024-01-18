@@ -54,9 +54,13 @@ Clustering played a pivotal role in our approach. We experimented with various c
 3. We can set initial cluster centers as the questions themselves, which enables us to correctly match the questions with the clusters.
 
 ## 7. Feature Engineering
-
+### 7.1 Sentiment Scores
 We introduced sentiment scores as additional features to gauge user satisfaction with responses. For this, we experimented with two predefined Sentiment Analysis models, Bert and TextBlob. After the experimentation, we observed that we were more satisfied with the TextBlob. Bert's sentiment scores came out to be around -0.7 for almost every sample. Still, we also included Bert's scores while performing the feature selection.
+
+### 7.2 Readability Scores
 In addition, we also calculated the readability scores of the prompts. To achieve this, we utilized the textstat library. Specifically, we used **flesch_reading_ease,	flesch_kincaid_grade, gunning_fog,	smog_index,	automated_readability_index,	coleman_liau_index,	linsear_write_formula,	dale_chall_readability_score**.
+
+### 7.3 Whitelist / Blacklist Words
 Furthermore, the application of whitelist and blacklist words during feature engineering provided finer control over the model's understanding of relevant terms. We decided to drop the keywords features to only 2, Blacklist and Whitelist, because we believe that checking every single word's frequency separately increases the dimensionality. Instead, we thought that keeping the words that have negative meanings on the prompt in the Blacklist and keeping the words that have positive meanings on the prompt in the Whitelist is better. 
 In order to calculate Whitelist and Blacklist scores, we used a different approach. Rather than calculating the frequency of whitelist words and basically taking the average (or equivalently checking the frequency of them over the entire conversation), we profit from the advantage of having split the prompts into corresponding questions. We think that splitting the prompts enables us to detect the difference between an unpleasant prompt in a question with higher grade, by just giving weights to the prompts proportional to their question's grade. For example, two different users u1 and u2 may have equal blacklist word frequencies for question 2 and question 5 respectively. u1's blacklist word frequency may mean a loss of points out of 5 since q2 is 5 points, but u2's blacklist word frequency should mean a higher loss since question 5 is 20 points. In order to achieve the interpretation of this difference, we calculate the weighted mean of whitelist and blacklist words as follows:
                 whitelist_score = (q1_whitelist_freq * q1_grade + q2_whitelist_freq * q2_grade + ...) / total_grade
