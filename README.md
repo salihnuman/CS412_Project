@@ -17,8 +17,9 @@
   - [7.1 Sentiment Scores](#sentiment2)
   - [7.2 Readability Scores](#read)
   - [7.3 Whitelist / Blacklist Words](#whiteblack)
-  - [9. Model Fitting & Evaluation](#modelfit)
-  - [10. Results & Analysis](#results)
++ ### [8. Feature Selection](#featuresel)
++ ### [9. Model Fitting & Evaluation](#modelfit)
++ ### [10. Results & Analysis](#results)
 
 
 
