@@ -12,19 +12,19 @@ This diagram demonstrates the different steps of the project we followed in orde
 
 ### 2.1 Direct Clustering
 
-In contrast to the existing approach, which relied on cosine similarity for clustering, we adopted direct clustering techniques. This involved experimenting with various clustering algorithms, such as K-Means, DBScan, and GMM, to determine the most effective method for our specific problem.
+In contrast to the existing approach, which relied on cosine similarity for prompt-matching, we adopted clustering algorithms. This involved experimenting with various clustering algorithms, such as K-Means, DBScan, and GMM, to determine the most effective method for our specific problem.
 
 ### 2.2 Preprocessing
 
-Recognizing the limitations of the existing project's word data preprocessing, we implemented a preprocessing step to address issues like differentiating between similar words ('change' and 'changed'). This ensured a more accurate representation of the data for subsequent analysis.
+Recognizing the absence of the existing project's word data preprocessing, we implemented a preprocessing step to address issues like differentiating between similar words ('change' and 'changed'). This ensured a more accurate representation of the data for subsequent analysis.
 
 ### 2.3 Keyword Lists
 
 We introduced two types of keyword lists, namely blacklist and whitelist, along with their respective frequencies. This refinement helped enhance the quality of features used in the model.
 
-### 2.4 Sentiment Scores
+### 2.4 Sentiment and Readability Scores
 
-Sentiment scores were incorporated as a new feature to provide insights into user satisfaction with the answers. This addition aimed to capture the emotional context of the text data.
+Sentiment scores were calculated as a new feature to provide insights into user satisfaction with the answers. This addition aimed to capture the sentimental context of the prompt. In addition, we also utilized the readability score of the prompts in order to assess the prompts’ interpretability.
 
 ### 2.5 Vectorization Techniques
 
@@ -32,25 +32,34 @@ Instead of relying solely on TF-IDF, we explored alternative vectorization appro
 
 ### 2.6 Dimensionality Reduction with PCA
 
-Recognizing the high dimensionality of NLP data, we applied Principal Component Analysis (PCA) to reduce dimensionality. Different PCA values were experimented with, and the optimal value, providing over 90% explained variance, was determined to enhance clustering effectiveness.
+Recognizing the high dimensionality of NLP data, we applied Principal Component Analysis (PCA) to reduce dimensionality. Different PCA values were experimented with, and the optimal value, providing over 90% explained variance, was determined to enhance clustering performance.
 
 ## 3. Preprocessing
 
-In the existing project, preprocessing was not applied to the data. However, recognizing its importance in frequency-based approaches, we implemented preprocessing to address issues related to word variations and improve the overall model performance.
+In the existing project, preprocessing was not applied to the data. However, recognizing its importance in frequency-based approaches, we implemented preprocessing to address issues related to word variations and improve the overall model performance. Precisely, we implemented and experimented with conversion to lowercase, removing punctuation and stop words, stemming, and lemmatization. Upon experimenting with these, we found which techniques were successful in terms of the model’s performance. What is more, although we expected the features of vectorizers to be decreased, they somehow increased. Even though we do not know the exact reason for this, we think that it was caused because of the Turkish words existing in the prompts. To overcome this issue, we put maximum features parameters to vectorizers.
 
 ## 4. Vectorizer
 
-While the existing project solely utilized the TF-IDF approach, we expanded our vectorization techniques to include Bag of Words and Word2Vec. This allowed us to assess the effectiveness of different vectorization methods in capturing semantic relationships within the data.
+While the existing project solely utilized the TF-IDF approach, we expanded our vectorization techniques to include Bag of Words and Word2Vec. This allowed us to assess the effectiveness of different vectorization methods in capturing semantic relationships within the data. We experimented with different clustering algorithms with different vectorizers and calculated the Silhouette scores on each trial to find the best fit for our data.
 
-## 5. Clustering
+## 5. PCA
 
-Clustering played a pivotal role in our approach. We experimented with various clustering techniques, such as K-Means, DBScan, and GMM, and assessed their effectiveness using the Silhouette score. Dimensionality reduction was later explored to improve clustering outcomes. By doing so, we were able to classify each prompt to the specific question.
+Given the high dimensionality inherent in NLP data, we applied PCA to reduce dimensionality. Through experimentation, we identified the optimal number of PCA components that provided over 90% explained variance, leading to improved clustering performance, as indicated by the increased Silhouette score. The reason we utilized PCA is to provide a more concise and meaningful representation of complex datasets (as in our case), offering benefits such as improved model simplicity and efficiency.
 
-## 6. PCA
+## 6. Clustering
 
-Given the high dimensionality inherent in NLP data, we applied PCA to reduce dimensionality. Through experimentation, we identified the optimal number of PCA components that provided over 90% explained variance, leading to improved clustering performance, as indicated by the increased Silhouette score. The reason we utilized PCA is to provide a more concise and meaningful representation of complex datasets, our dataset is complex, offering benefits such as improved model simplicity and efficiency.
+Clustering played a pivotal role in our approach. We experimented with various clustering techniques, such as K-Means, DBScan, and GMM, and assessed their effectiveness using the Silhouette score. Dimensionality reduction was later explored to improve clustering outcomes. By doing so, we were able to match each prompt to the specific question. We decided to use the K-Means model because:
+1. K-Means provided the highest Silhouette score with preprocessed data.
+2. We can predefine the number of clusters (9 Questions).
+3. We can set initial cluster centers as the questions themselves, which enables us to correctly match the questions with the clusters.
 
 ## 7. Feature Engineering
 
-We introduced sentiment scores as additional features to gauge user satisfaction with responses. For this, we experimented with two sentiment models which are Bert and TextBlob. After the experimentation, we observed that we were more satisfied with the TextBlob.
-Furthermore, the application of whitelist and blacklist words during feature engineering provided finer control over the model's understanding of relevant terms. The reasoning behind the Blacklist and Whitelist approach is that checking every single word's relation with the prompt is not suitable. Instead, we thought that keeping the words that have negative meanings on the prompt in the Blacklist and keeping the words that have positive meanings on the prompt in the Whitelist is better. For instance, the word "gini" is included in the Whitelist since it has a positive effect on the score directly. If the student does not mention "gini" explicitly in his/her prompt, then s/he lost points for sure.
+We introduced sentiment scores as additional features to gauge user satisfaction with responses. For this, we experimented with two predefined Sentiment Analysis models, Bert and TextBlob. After the experimentation, we observed that we were more satisfied with the TextBlob. Bert's sentiment scores came out to be around -0.7 for almost every sample. Still, we also included Bert's scores while performing the feature selection.
+In addition, we also calculated the readability scores of the prompts. To achieve this, we utilized the textstat library. Specifically, we used **flesch_reading_ease,	flesch_kincaid_grade, gunning_fog,	smog_index,	automated_readability_index,	coleman_liau_index,	linsear_write_formula,	dale_chall_readability_score**.
+Furthermore, the application of whitelist and blacklist words during feature engineering provided finer control over the model's understanding of relevant terms. We decided to drop the keywords features to only 2, Blacklist and Whitelist, because we believe that checking every single word's frequency separately increases the dimensionality. Instead, we thought that keeping the words that have negative meanings on the prompt in the Blacklist and keeping the words that have positive meanings on the prompt in the Whitelist is better. 
+In order to calculate Whitelist and Blacklist scores, we used a different approach. Rather than calculating 
+
+## 8. Feature Selection
+
+## 9. Model Evaluation
