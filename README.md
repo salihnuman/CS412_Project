@@ -4,7 +4,7 @@
 
 The project's architecture is illustrated in the following schema:
 
-BURAYA ŞEMA GELECEK
+![Schema](diagram.drawio.png)
 
 This schema visually represents the different components and their interactions within the system.
 
