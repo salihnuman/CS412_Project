@@ -6,7 +6,7 @@ The project's architecture is illustrated in the following schema:
 
 ![Schema](diagram.drawio.png)
 
-This schema visually represents the different components and their interactions within the system.
+This diagram demonstrates the different steps of the project we followed in order to come up with this system. 
 
 ## 2. Main Contributions to the Project
 
