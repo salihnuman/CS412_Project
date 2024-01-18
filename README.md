@@ -52,4 +52,5 @@ Given the high dimensionality inherent in NLP data, we applied PCA to reduce dim
 
 ## 7. Feature Engineering
 
-We introduced sentiment scores as additional features to gauge user satisfaction with responses. Furthermore, the application of whitelist and blacklist words during feature engineering provided finer control over the model's understanding of relevant terms.
+We introduced sentiment scores as additional features to gauge user satisfaction with responses. For this, we experimented with two sentiment models which are Bert and TextBlob. After the experimentation, we observed that we were more satisfied with the TextBlob.
+Furthermore, the application of whitelist and blacklist words during feature engineering provided finer control over the model's understanding of relevant terms. The reasoning behind the Blacklist and Whitelist approach is that checking every single word's relation with the prompt is not suitable. Instead, we thought that keeping the words that have negative meanings on the prompt in the Blacklist and keeping the words that have positive meanings on the prompt in the Whitelist is better.
