@@ -31,7 +31,7 @@ The project's architecture is illustrated in the following schema:
 
 This diagram demonstrates the different steps of the project we followed in order to come up with this system. 
 
-## 2. Main Contributions to the Project <a name="userdoc"/>
+## 2. Main Contributions to the Project <a name="maincon"/>
 
 ### 2.1 Clustering for Prompt Matching <a name="clustering1"/>
 
