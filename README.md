@@ -76,3 +76,16 @@ We searched through different regression models (from Random Forest to Bayesian 
 
 
 Although we decreased both the train and test error compared to the baseline model, we are not satisfied with the MSE that we received. 
+
+
+## Work by Each Individual
+
+| Emre                                                                            | Çağrı                     | Salih                                                                        | Burak                                                                        | Melih                                                              |
+|---------------------------------------------------------------------------------|---------------------------|------------------------------------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| Implementing DBScan                                                             | Similarity Matrix         | Implementing K-Means Clustering                                              | Implementing Gaussian Mixture Model                                          | Implementing the Bag of Words Approach                             |
+| DBScan trials (different vectorizers, different PCA values, etc.)               | Silhouette coefficient    | Implementing Agglomerative Clustering                                        | GMM trials (different vectorizers, different PCA values, etc.)               | Implementing the Word2Vec Approach                                 |
+| Number of Compononents vs Explained Variance & Silhouette score plot for DBSCAN | Preprocessing the dataset | Implementing Principal Component Analysis (PCA) for Dimensionality Reduction | Number of Compononents vs Explained Variance & Silhouette score plot for GMM | K-Means trials (different vectorizers, different PCA values, etc.) |
+| Sentiment Analysis for Feature Engineering                                      | Model Fitting             | KMeans trials (different vectorizers, different PCA values, etc.)            | Refining the ReadMe File                                                     | Writing the ReadMe File                                            |
+| Readability Score                                                               |                           | Feature Engineering                                                          | Model Fitting                                                                | Model Fitting                                                      |
+| Model Fitting                                                                   |                           | Drawing a schema for ReadMe File                                             |                                                                              |                                                                    |
+|                                                                                 |                           | Model Fitting                                                                |                                                                              |                                                                    |
