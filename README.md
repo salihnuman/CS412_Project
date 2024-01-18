@@ -44,13 +44,13 @@ While the existing project solely utilized the TF-IDF approach, we expanded our 
 
 ## 5. Clustering
 
-Clustering played a pivotal role in our approach. We experimented with various clustering techniques, such as K-Means, DBScan, and GMM, and assessed their effectiveness using the Silhouette score. Dimensionality reduction was later explored to improve clustering outcomes.
+Clustering played a pivotal role in our approach. We experimented with various clustering techniques, such as K-Means, DBScan, and GMM, and assessed their effectiveness using the Silhouette score. Dimensionality reduction was later explored to improve clustering outcomes. By doing so, we were able to classify each prompt to the specific question.
 
 ## 6. PCA
 
-Given the high dimensionality inherent in NLP data, we applied PCA to reduce dimensionality. Through experimentation, we identified the optimal number of PCA components that provided over 90% explained variance, leading to improved clustering performance, as indicated by the increased Silhouette score.
+Given the high dimensionality inherent in NLP data, we applied PCA to reduce dimensionality. Through experimentation, we identified the optimal number of PCA components that provided over 90% explained variance, leading to improved clustering performance, as indicated by the increased Silhouette score. The reason we utilized PCA is to provide a more concise and meaningful representation of complex datasets, our dataset is complex, offering benefits such as improved model simplicity and efficiency.
 
 ## 7. Feature Engineering
 
 We introduced sentiment scores as additional features to gauge user satisfaction with responses. For this, we experimented with two sentiment models which are Bert and TextBlob. After the experimentation, we observed that we were more satisfied with the TextBlob.
-Furthermore, the application of whitelist and blacklist words during feature engineering provided finer control over the model's understanding of relevant terms. The reasoning behind the Blacklist and Whitelist approach is that checking every single word's relation with the prompt is not suitable. Instead, we thought that keeping the words that have negative meanings on the prompt in the Blacklist and keeping the words that have positive meanings on the prompt in the Whitelist is better.
+Furthermore, the application of whitelist and blacklist words during feature engineering provided finer control over the model's understanding of relevant terms. The reasoning behind the Blacklist and Whitelist approach is that checking every single word's relation with the prompt is not suitable. Instead, we thought that keeping the words that have negative meanings on the prompt in the Blacklist and keeping the words that have positive meanings on the prompt in the Whitelist is better. For instance, the word "gini" is included in the Whitelist since it has a positive effect on the score directly. If the student does not mention "gini" explicitly in his/her prompt, then s/he lost points for sure.
