@@ -10,7 +10,7 @@ This diagram demonstrates the different steps of the project we followed in orde
 
 ## 2. Main Contributions to the Project
 
-### 2.1 Direct Clustering
+### 2.1 Clustering for Prompt Matching
 
 In contrast to the existing approach, which relied on cosine similarity for prompt-matching, we adopted clustering algorithms. This involved experimenting with various clustering algorithms, such as K-Means, DBScan, and GMM, to determine the most effective method for our specific problem.
 
