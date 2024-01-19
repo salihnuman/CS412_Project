@@ -9,6 +9,7 @@
   - [2.4 Sentiment and Readability Scores](#sentiment1)
   - [2.5 Vectorization Techniques](#vec)
   - [2.6 Dimensionality Reduction with PCA](#dimred)
+  - [2.7 Removing Outliners With InterQuantile Range Method](#iqr)
 + ### [3. Preprocessing](#preprocessing2)
 + ### [4. Vectorizer](#vec2)
 + ### [5. PCA](#pca)
@@ -56,6 +57,10 @@ Instead of relying solely on TF-IDF, we explored alternative vectorization appro
 ### 2.6 Dimensionality Reduction with PCA <a name="dimred"/>
 
 Recognizing the high dimensionality of NLP data, we applied Principal Component Analysis (PCA) to reduce dimensionality. Different PCA values were experimented with, and the optimal value, providing over 90% explained variance, was determined to enhance clustering performance.
+
+### 2.7 Removing Outliners With InterQuantile Range Method <a name="iqr"/>
+
+In the existing project, conversations with zero prompts were excluded from the dataset. Additionally to this, we applied the Interquartile Range (IQR) method to identify and eliminate scores that fall outside the defined range, effectively removing outliers from our data.
 
 ## 3. Preprocessing <a name="preprocessing2"/>
 
