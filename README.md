@@ -114,13 +114,28 @@ Only this was not enough to come up with the most useful subset. We also tried f
 
 ## 9. Model Fitting & Evaluation <a name="modelfit"/>
 
-We searched through different regression models (from Random Forest to Bayesian Lasso) and evaluated their performance to find which algorithm can model our dataset the best. We also tuned their hyperparameters using both manual methods and automated tuning algorithms like GridSearch.
+We searched through different regression models and evaluated their performance to find which algorithm can model our dataset the best. We also tuned their hyperparameters using both manual methods and automated tuning algorithms like GridSearch. The models we experimented with are as follows:
+1. Decision Tree
+2. Random Forest
+3. Support Vector Regressor (SVR)
+4. Linear / Lasso / Ridge / Bayesian Ridge Regressor
+5. kNN Regressor
+   
+In addition, we also used boosting and bagging models to deal with overfitting/underfitting, the models we used are as follows:
+1. Ada Boosting
+2. BaggingRegressor
+
+We experimented with many hyper-parameters for each of the models. For the models that provided better performances, we ran GridSearch algorithm to get the best parameters.
 
 ## 10. Results & Analysis <a name="results"/>
 
+We got the best results with the Random Forest, Lasso, and SVR models. Among these, SVR with the following parameters were selected:
 
-Although we decreased both the train and test error compared to the baseline model, we are not satisfied with the MSE that we received. 
+    SVR(c = 0.1, deggre = 2, gamma = 'scale', kernel = 'linear')
 
+With bagging, this SVR model provided **37.17 MSE** on the train set, and **15.53 MSE** on the test set.
+
+Although we decreased both the train and test error compared to the baseline model, we are not satisfied with the MSE that we received. Especially, we think that our model was underfit, which cannot be resolved by boosting since the data was too scarce for the AdaBoost model to identify unlearnt features and boost them.
 
 ## Work by Each Individual
 
