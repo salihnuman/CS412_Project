@@ -76,7 +76,7 @@ Given the high dimensionality inherent in NLP data, we applied PCA to reduce dim
 
 ## 6. Clustering <a name="clustering2"/>
 
-Clustering played a pivotal role in our approach. We experimented with various clustering techniques, such as K-Means, DBScan, and GMM, and assessed their effectiveness using the Silhouette score. Dimensionality reduction was later explored to improve clustering outcomes. By doing so, we were able to match each prompt to the specific question. We decided to use the K-Means model because:
+Clustering played a pivotal role in our approach. We experimented with various clustering techniques, such as K-Means, DBScan, and GMM, and assessed their effectiveness using the Silhouette score. In addition to that, we also tried combining K-Means with GMM regarding the advices of ChatGPT but unfortunately it gave a poor silouette score. Dimensionality reduction was later explored to improve clustering outcomes. By doing so, we were able to match each prompt to the specific question. We decided to use the K-Means model because:
 1. K-Means provided the highest Silhouette score with preprocessed data.
 2. We can predefine the number of clusters (9 Questions).
 3. We can set initial cluster centers as the questions themselves, which enables us to correctly match the questions with the clusters.
