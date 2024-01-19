@@ -1,4 +1,4 @@
-# CS 412 CONGABONGAZONGA BROJECT
+# CS 412 BAIR BROGRAMMING BROJECT
 
 ## Table Of Contents
 + ### [1. Overall Structure](#overall)
