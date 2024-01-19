@@ -1,5 +1,15 @@
 # CS 412 TERM PROJECT
 
+Burak Batman - 28120
+
+Çağrı Altınüzengi - 28100
+
+Emre Genç - 28223
+
+Mustafa Melih Demircioğlu - 27880 
+
+Salih Numan Büyükbaş - 28142
+
 ## Table Of Contents
 + ### [1. Overall Structure](#overall)
 + ### [2. Main Contributions to the Project](#maincon)
