@@ -1,4 +1,4 @@
-# CS 412 BAIR BROGRAMMING BROJECT
+# CS 412 TERM PROJECT
 
 ## Table Of Contents
 + ### [1. Overall Structure](#overall)
